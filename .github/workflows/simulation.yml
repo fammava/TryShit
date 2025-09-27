@@ -18,8 +18,15 @@ jobs:
         with:
           go-version: '1.21'
 
+      - name: Find dining.go
+        id: findfile
+        run: |
+          file=$(find . -name "dining.go" | head -n 1)
+          echo "DINING_FILE=$file" >> $GITHUB_ENV
+          echo "Found dining.go at: $file"
+
       - name: Build Simulation
-        run: go build -o dining dining.go
+        run: go build -o dining $DINING_FILE
 
       - name: Run Simulation
         run: ./dining > simulation.log 2>&1 || true
