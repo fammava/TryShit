@@ -18,15 +18,13 @@ jobs:
         with:
           go-version: '1.21'
 
-
-
       - name: Build simulation binary
         run: go build -o dining main.go
 
       - name: Run Simulation
         run: |
           if [ -f ./dining ]; then
-            ./dining > simulation.log 2>&1 & 
+            ./dining > simulation.log 2>&1 &
             sleep 15
             pkill dining || true
           else
