@@ -28,8 +28,6 @@ jobs:
             ${{ runner.os }}-go-
 
 
-      - name: Build
-        run: go build -o dining main.go
 
       - name: Run Simulation
         run: ./dining > simulation.log 2>&1 & sleep 15 && pkill dining
