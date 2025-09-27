@@ -24,13 +24,13 @@ func (p Philosopher) dine(wg *sync.WaitGroup) {
 
 		// Odd-even strategy to avoid circular wait
 		if p.id%2 == 0 {
-			// Even philosopher: left then right
+			// Even philosopher:left then right
 			fmt.Printf("[%d] Philosopher %d WAIT left\n", time.Now().UnixNano(), p.id)
 			p.leftCS.Lock()
 			fmt.Printf("[%d] Philosopher %d WAIT right\n", time.Now().UnixNano(), p.id)
 			p.rightCS.Lock()
 		} else {
-			// Odd philosopher: right then left
+			// Odd philosopher:right then left
 			fmt.Printf("[%d] Philosopher %d WAIT right\n", time.Now().UnixNano(), p.id)
 			p.rightCS.Lock()
 			fmt.Printf("[%d] Philosopher %d WAIT left\n", time.Now().UnixNano(), p.id)
@@ -60,8 +60,8 @@ func main() {
 	philosophers := make([]*Philosopher, numPhilosophers)
 	for i := 0; i < numPhilosophers; i++ {
 		philosophers[i] = &Philosopher{
-			id:      i,
-			leftCS:  chopsticks[i],
+			id: i,
+			leftCS: chopsticks[i],
 			rightCS: chopsticks[(i+1)%numPhilosophers],
 		}
 	}
